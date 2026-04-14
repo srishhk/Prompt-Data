@@ -726,7 +726,7 @@ export default function GeneratePage() {
               className="bg-transparent w-20 text-gray-800 outline-none text-sm"
               value={rows}
               onChange={(e) => setRows(Number(e.target.value))}
-              min={10} max={1000}
+              min={10} max={100000}
             />
           </div>
           <select

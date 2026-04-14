@@ -1,36 +1,165 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PromptData ✨
 
-## Getting Started
+> **Describe your dataset. Get it instantly.**
 
-First, run the development server:
+PromptData is an AI-powered dataset generator. Just describe what data you need in plain English, and get a clean, downloadable dataset in seconds — no coding required.
+
+---
+
+## 🚀 Features
+
+- **Natural language prompts** — describe any dataset and it gets generated instantly
+- **Quick templates** — Students, Hospital, Stocks, E-commerce, HR, Cricket and more
+- **Regional locales** — All India, North India, South India, Maharashtra, Gujarat, East India
+- **Multiple export formats** — Excel, JSON, CSV, SQL, XML
+- **Data preview table** — sort, search, and paginate through results
+- **Numeric stats** — min, max, avg auto-calculated for numeric columns
+- **Generation history** — revisit and re-run previous prompts
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js 14 (App Router), TypeScript, Tailwind CSS |
+| Backend | FastAPI (Python) |
+| AI | OpenAI API |
+| Data | Pandas, NumPy, Faker |
+| Export | XLSX, JSON, CSV, SQL, XML |
+
+---
+
+## 📁 Project Structure
+
+```
+PromptData/
+├── frontend/               # Next.js app
+│   └── app/
+│       └── generate/
+│           └── page.tsx    # Main generate page
+├── backend/                # FastAPI app
+│   ├── main.py             # Entry point
+│   ├── routes/
+│   │   ├── generate.py     # Dataset generation route
+│   │   ├── export.py       # Export route
+│   │   └── library.py      # Library route
+│   └── requirements.txt
+└── README.md
+```
+
+---
+
+## ⚙️ Local Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/promptdata.git
+cd promptdata
+```
+
+### 2. Backend Setup
+
+```bash
+cd backend
+python -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Create a `.env` file in the `backend/` folder:
+
+```env
+OPENAI_API_KEY=your_openai_api_key_here
+```
+
+Start the backend:
+
+```bash
+uvicorn main:app --reload
+```
+
+Backend runs at: `http://localhost:8000`
+
+### 3. Frontend Setup
+
+```bash
+cd frontend
+npm install
+```
+
+Create a `.env.local` file in the `frontend/` folder:
+
+```env
+NEXT_PUBLIC_API_URL=http://localhost:8000
+```
+
+Start the frontend:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Frontend runs at: `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🌐 Deployment
 
-## Learn More
+### Backend → [Railway](https://railway.app)
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your code to GitHub
+2. Go to Railway → New Project → Deploy from GitHub
+3. Select your `backend/` folder
+4. Add environment variable: `OPENAI_API_KEY`
+5. Railway gives you a public URL like `https://promptdata-api.up.railway.app`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend → [Vercel](https://vercel.com)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Go to Vercel → New Project → Import GitHub repo
+2. Set root directory to `frontend/`
+3. Add environment variable:
+   ```
+   NEXT_PUBLIC_API_URL=https://your-railway-backend-url.up.railway.app
+   ```
+4. Click Deploy — your app is live at `https://promptdata.vercel.app`
 
-## Deploy on Vercel
+> ⚠️ **Important:** Deploy the backend first, then use its URL in the frontend environment variables.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📦 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Health check |
+| POST | `/api/generate` | Generate a dataset from a prompt |
+| POST | `/api/export` | Export dataset in a specific format |
+| GET | `/api/library` | Get saved datasets |
+
+---
+
+## 🧑‍💻 Usage Example
+
+1. Open the app
+2. Select a quick template (e.g. 🎓 Students) or write your own prompt:
+   ```
+   500 rows of Indian hospital patient records with patient_name, age, disease, ward, bill_amount
+   ```
+3. Choose number of rows and locale
+4. Click **✨ Generate Dataset**
+5. Preview, search, sort the data
+6. Download as Excel / CSV / JSON / SQL / XML
+
+---
+
+## 📄 License
+
+MIT License — feel free to use, modify, and deploy.
+
+---
+
+## 🙌 Contributing
+
+Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
